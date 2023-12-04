@@ -74,6 +74,22 @@ public class AccountCrudOperations implements CrudOperations<Account> {
     }
 
     @Override
+    public Account update(Account toUpdate) {
+        String sql = "UPDATE Account SET accountName = ? , balance=? , currencyCode=? WHERE accountId = ?" ;
+        getConnection();
+        try(PreparedStatement preparedStatement =connection.prepareStatement(sql)){
+            preparedStatement.setString(1 , toUpdate.getAccountName());
+            preparedStatement.setDouble(2, toUpdate.getBalance());
+            preparedStatement.setString(3 , toUpdate.getCurrencyCode());
+            preparedStatement.setString(4 ,toUpdate.getAccountId());
+            preparedStatement.executeUpdate() ;
+        } catch (SQLException e) {
+                throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    @Override
     public Account save(Account toSave) {
         try{
             String sql = "INSERT INTO Account (accountId, accountName, balance, currencyCode) " +
