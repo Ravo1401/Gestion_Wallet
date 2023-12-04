@@ -1,12 +1,23 @@
 package Models;
 
 public class Currency {
+    private int id ;
     private String currencyCode;
+
     private String currencyName;
 
-    public Currency(String currencyCode, String currencyName) {
+    public Currency(int id, String currencyCode, String currencyName) {
+        this.id = id;
         this.currencyCode = currencyCode;
         this.currencyName = currencyName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCurrencyCode() {
@@ -28,7 +39,8 @@ public class Currency {
     @Override
     public String toString() {
         return "Currency{" +
-                "currencyCode='" + currencyCode + '\'' +
+                "id=" + id +
+                ", currencyCode='" + currencyCode + '\'' +
                 ", currencyName='" + currencyName + '\'' +
                 '}';
     }
